@@ -5,10 +5,6 @@ function getData()
     url: "api/?get",
     context: document.body
   }).done(function(data) {
-
-    // get request
-    $.getJSON('api/?get', function(data)
-    {
       $('table').remove();
       let sizeOfData = data.length;
       // create table with data
@@ -44,13 +40,17 @@ function getData()
       }
       $("#input").html('Got data'+text).addClass('btn btn-success');
     });
-
-  });
 }
 function createData()
 {
   $.ajax({
-    url: "api/?get&opt=insert",
+    url: "api/?opt=insert",
     context: document.body
-  }).done();
+  }).done(function(data){
+    if(data != null){
+      console.log(data);
+    }else{
+      console.log(data);
+    }
+  });
 }

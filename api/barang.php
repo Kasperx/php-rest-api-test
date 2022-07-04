@@ -103,7 +103,8 @@ Class Barang {
 		$status = $stmt->execute();
 		/////////////////////////////////////
 		// get random data from faker api
-		for($count=0; $count<10; $count++)
+		// for($count=0; $count<10; $count++)
+		for($count=0; $count<rand(1,50); $count++)
 		{
 			$faker = Faker\Factory::create();
 			// $person = new person($faker->firstName, $faker->lastName, rand(0, 100), getRandomString(), $faker->state);

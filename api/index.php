@@ -79,17 +79,20 @@ require_once("barang.php");
 $barang = new Barang();
 if($method=='GET')
 {
-	if(!isset($url_array[1])){
+	// if(!isset($url_array[1])){
+	if(!isset($_GET['opt'])){
 		$data=$barang->getAll();
 		$response['status'] = 200;
 		// $parameter = $_GET['get'];
 		// $response['data'] = $parameter;
 		$response['data'] = $data;
 	// }else if($_GET['get'] == "insert"){
-	}else{
+	}else if(isset($_GET['opt']) && $_GET['opt'] == "insert"){
 		$barang->insertRandom();
 		$response['status'] = 200;
-		$response['data'] = $data;
+		$response['data'] = "done";
+	}else{
+		$response['status'] = 404;
 	}
 	// }else{
 	// 	$id=$url_array[1];
@@ -102,6 +105,7 @@ if($method=='GET')
 	// 		$response['data'] = $data;
 	// 	}
 	// }
+	$data = null;
 }
 elseif($method=='POST'){
 	// METHOD : POST api/barang
