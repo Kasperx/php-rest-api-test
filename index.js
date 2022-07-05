@@ -5,10 +5,11 @@ function getData()
     url: "api/?get",
     context: document.body
   }).done(function(data) {
-      $('table').remove();
+      $('#table').remove();
       let sizeOfData = data.length;
       // create table with data
       var table = $('<table>').addClass('table');
+      table.attr('id', 'table');
       table.append('<tr>');
       table.append('<th>id</th>');
       table.append('<th>firstname</th>');
@@ -31,6 +32,8 @@ function getData()
       table.append('</table>');
       $('body').append('<p></p>');
       $('body').append(table);
+      // $('#table').append('<p></p>');
+      // $('#table').append(table);
       let text;
       if(sizeOfData == undefined)
       {
