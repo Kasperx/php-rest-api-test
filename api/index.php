@@ -76,7 +76,8 @@ $action = $url_array[0];
 $method = $_SERVER['REQUEST_METHOD'];
 
 // require_once("maria_db.php");
-require_once("postgres_db.php");
+// require_once("postgres_db.php");
+require_once("SQLite_db.php");
 $barang = new Barang();
 if($method=='GET')
 {

@@ -1,5 +1,5 @@
 {
-    "require": {
-        "fakerphp/faker": "^1.19"
+    "require-dev": {
+        "fzaninotto/faker": "dev-master#c981c04 as 1.9.1"
     }
 }
