@@ -1,4 +1,10 @@
 
+$(document).ready(function(){
+  moment.locale('de');
+  $("#input_date").attr("placeholder", moment().format('YYYY.MM.DD'));
+  $("#input_time").attr("placeholder", moment().format('LT'));
+});
+
 function getData()
 {
   $.ajax({
