@@ -39,6 +39,13 @@ Class Barang {
         $data = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $data;
 	}
+	
+	public function getAllTimes(){
+        $sql = "SELECT * FROM workday group by date";
+        $stmt = $this->db->query($sql);
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $data;
+	}
 
 	public function get($id){
         $sql = "SELECT * FROM usertable WHERE id=?";
@@ -86,25 +93,26 @@ Class Barang {
 	}
 	public function insertRandom()
 	{
+		$tableName = 'usertable';
 		/////////////////////////////////////
-		$sql = "drop table if exists usertable";
-		$stmt = $this->db->prepare($sql); 
-		$status = $stmt->execute();
-		$sql = "create table if not exists usertable("
-		."id int autoincrement not null,"
-		."firstname varchar(20) not null,"
-		."lastname varchar(20) not null,"
-		."state varchar(20),"
+		// $sql = "drop table if exists $tableName";
+		// $stmt = $this->db->prepare($sql); 
+		// $status = $stmt->execute();
+		$sql = "create table if not exists $tableName("
+		."id integer primary key autoincrement not null,"
+		."firstname text not null,"
+		."lastname text not null,"
+		."state text,"
 		."age int,"
-		."pw varchar(20),"
-		."primary key (id)) engine=innodb;";
+		."pw text"
+		.");";
 		// create table usertable (id serial, firstname varchar(20) not null, surname varchar(20) not null, age int, pw int, primary key (id)) engine=innodb;
 		$stmt = $this->db->prepare($sql);
 		$status = $stmt->execute();
 		/////////////////////////////////////
-		// $sql = "delete from usertable;";
-		// $stmt = $this->db->prepare($sql);
-		// $status = $stmt->execute();
+		$sql = "delete from usertable;";
+		$stmt = $this->db->prepare($sql);
+		$status = $stmt->execute();
 		/////////////////////////////////////
 		// get random data from faker api
 		// for($count=0; $count<10; $count++)
@@ -122,6 +130,57 @@ Class Barang {
 			."'".$faker->state."',"
 			.rand(0, 100).","
 			."'".$this->getRandomString()."'"
+			.");";
+			$stmt = $this->db->prepare($sql); 
+			$stmt->execute();
+		}
+		// get random data from faker api
+        // return;
+	}
+	public function insertTime($personId, $date, $timeFrom, $timeUntil)
+	{
+		$tableName = 'workday';
+		$foreignTableName = 'usertable';
+		/////////////////////////////////////
+		// $sql = "drop table if exists $tableName";
+		// $stmt = $this->db->prepare($sql); 
+		// $status = $stmt->execute();
+		/////////////////////////////////////
+		// get random person id
+		$sql = "select id from ".$foreignTableName." limit 1";
+		$stmt = $this->db->prepare($sql); 
+		$id = $stmt->execute();
+		/////////////////////////////////////
+		$sql = "create table if not exists ".$tableName."("
+		."id integer primary key autoincrement not null,"
+		."person_id integer,"
+		."date text not null,"
+		."from_time text not null,"
+		."until_time text,"
+		."foreign key (person_id) references ".$foreignTableName." (id)"
+		.");";
+		// create table usertable (id serial, firstname varchar(20) not null, surname varchar(20) not null, age int, pw int, primary key (id)) engine=innodb;
+		$stmt = $this->db->prepare($sql);
+		$status = $stmt->execute();
+		/////////////////////////////////////
+		$sql = "delete from $tableName;";
+		$stmt = $this->db->prepare($sql);
+		$status = $stmt->execute();
+		/////////////////////////////////////
+		// get random data from faker api
+		// for($count=0; $count<10; $count++)
+		for($count=0; $count<rand(1,10); $count++)
+		{
+			$faker = Faker\Factory::create();
+			// $person = new person($faker->firstName, $faker->lastName, rand(0, 100), getRandomString(), $faker->state);
+			// array_push($array, $person);
+			$sql = "insert into $tableName ("
+			."person_id, date, from_time, until_time"
+			.") values ("
+			."$id,"
+			."'".$faker->date('Y_m_d')."',"
+			."'".$faker->time()."',"
+			."'".$faker->time()."'"
 			.");";
 			$stmt = $this->db->prepare($sql); 
 			$stmt->execute();

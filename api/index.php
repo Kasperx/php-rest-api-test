@@ -88,11 +88,20 @@ if($method=='GET')
 		// $parameter = $_GET['get'];
 		// $response['data'] = $parameter;
 		$response['data'] = $data;
-	// }else if($_GET['get'] == "insert"){
+		// }else if($_GET['get'] == "insert"){
 	}else if(isset($_GET['opt']) && $_GET['opt'] == "insert"){
 		$barang->insertRandom();
 		$response['status'] = 200;
 		$response['data'] = "done";
+	}else if(isset($_GET['opt']) && $_GET['opt'] == "createtimes"){
+		$barang->insertTime(4, 3, 2, 1);
+		$response['status'] = 200;
+		$response['data'] = "done";
+	}else if(isset($_GET['opt']) && $_GET['opt'] == "gettimes"){
+		// $barang->insertRandom();
+		$data=$barang->getAllTimes();
+		$response['status'] = 200;
+		$response['data'] = $data;
 	}else{
 		$response['status'] = 404;
 	}
