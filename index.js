@@ -1,8 +1,12 @@
 
 $(document).ready(function(){
   moment.locale('de');
-  $("#input_date").attr("placeholder", moment().format('YYYY.MM.DD'));
-  $("#input_time").attr("placeholder", moment().format('LT'));
+//  $("#input_date").attr("placeholder", moment().format('DD.MM.YYYY'));
+  $("#input_date").val(moment().format('DD.MM.YYYY'));
+//  $("#input_until_time").attr("placeholder", moment().format('LT'));
+  $("#input_until_time").val(moment().format('LT'));
+//  $("#input_from_time").attr("placeholder", moment().format('LT'));
+  $("#input_from_time").val(moment().format('LT'));
 });
 
 function getData()

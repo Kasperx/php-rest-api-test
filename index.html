@@ -13,8 +13,8 @@
    crossorigin="anonymous">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="index.js"></script>
-   <script src="libs/moment.js"></script>
-   <script src="libs/moment-with-locales.js"></script>
+   <script src="https://momentjs.com/downloads/moment.js"></script>
+   <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
  	</head>
  	<body class="container">
     <h1>Just a small playground</h1>
@@ -36,12 +36,25 @@
       <td>
         <h1><button onclick="createTimes()" class="btn btn-primary">Create times</input></h1>
       <td>
-          <td>
-            <form>
+	<table><tr><td>
+		<form>
+		<div>date</div>
               <input id="input_date" placeholder="input date"></input>
-              <input id="input_time" placeholder="input time"></input>
-            </form>
-          <td>
+		</form>
+		</td><td>
+		<form>
+		<div>from time</div>
+              <input id="input_from_time" placeholder="input from time"></input>
+		</form>
+		</td><td>
+              <div> bis </div>
+		</td><td>
+		<form>
+		<div>until time</div>
+              <input id="input_until_time" placeholder="input from time"></input>
+		</form>
+		</td>
+	</table></tr></td>
       </tr>
     </table>
     <table id="table"></table>
