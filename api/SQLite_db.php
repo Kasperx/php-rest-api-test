@@ -41,7 +41,7 @@ Class Barang {
 	}
 	
 	public function getAllTimes(){
-        $sql = "SELECT * FROM workday group by date";
+        $sql = "SELECT * FROM workday_random group by date";
         $stmt = $this->db->query($sql);
         $data = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $data;
@@ -139,7 +139,7 @@ Class Barang {
 	}
 	public function insertTime($personId, $date, $timeFrom, $timeUntil)
 	{
-		$tableName = 'workday';
+		$tableName = 'workday_random';
 		$foreignTableName = 'usertable';
 		/////////////////////////////////////
 		// $sql = "drop table if exists $tableName";
