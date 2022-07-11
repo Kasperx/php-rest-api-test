@@ -21,12 +21,12 @@ function getData()
       var table = $('<table>').addClass('table');
       table.attr('id', 'table');
       table.append('<tr>');
-      table.append('<th>id</th>');
-      table.append('<th>firstname</th>');
-      table.append('<th>lastname</th>');
-      table.append('<th>state</th>');
-      table.append('<th>age</th>');
-      table.append('<th>pw</th>');
+      table.append('<th>ID</th>');
+      table.append('<th>FIRSTNAME</th>');
+      table.append('<th>LASTNAME</th>');
+      table.append('<th>STATE</th>');
+      table.append('<th>AGE</th>');
+      table.append('<th>PW</th>');
       table.append('</tr>');
       $.each(data, function(key, val)
       {
